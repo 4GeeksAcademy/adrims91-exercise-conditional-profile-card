@@ -1,3 +1,4 @@
+import { name } from "file-loader";
 import "../style/index.css";
 
 /**
@@ -22,7 +23,26 @@ import "../style/index.css";
         city: null
     }
  */
-function render(variables = {}) {
+const render = (variables = {}) => {
+  let name = document.querySelector('input[for="name"]');
+  let jobChoice = document.querySelector('select[for="role"');
+  let cityChoice = document.querySelector('select[for="city"');
+  let countryChoice = document.querySelector('select[for="country"]');
+  let positionChanger = document.querySelector(
+    'select[for="socialMediaPosition"]'
+  );
+  document.addEventListener("input", () => {
+    document.querySelector("h1").innerHTML = name.value;
+  });
+  document.addEventListener("change", () => {
+    document.querySelector("h2").innerHTML = jobChoice.value;
+    document.querySelector(
+      "h3"
+    ).innerHTML = `${cityChoice.value}, ${countryChoice.value}`;
+    document
+      .querySelector("ul.position-right")
+      .classList.toggle(`position-${positionChanger.value}`);
+  });
   console.log("These are the current variables: ", variables); // print on the console
   // here we ask the logical questions to make decisions on how to build the html
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
@@ -44,7 +64,7 @@ function render(variables = {}) {
           </ul>
         </div>
     `;
-}
+};
 
 /**
  * Don't change any of the lines below, here is where we do the logic for the dropdowns
