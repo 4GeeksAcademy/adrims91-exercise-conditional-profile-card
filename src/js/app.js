@@ -1,4 +1,3 @@
-import { name } from "file-loader";
 import "../style/index.css";
 
 /**
@@ -23,44 +22,36 @@ import "../style/index.css";
         city: null
     }
  */
+const setDefault = (variable, defaultValue) => {
+  return variable === null ? defaultValue : variable;
+};
 const render = (variables = {}) => {
-  let name = document.querySelector('input[for="name"]');
-  let jobChoice = document.querySelector('select[for="role"');
-  let cityChoice = document.querySelector('select[for="city"');
-  let countryChoice = document.querySelector('select[for="country"]');
-  let positionChanger = document.querySelector(
-    'select[for="socialMediaPosition"]'
-  );
-  document.addEventListener("input", () => {
-    document.querySelector("h1").innerHTML = name.value;
-  });
-  document.addEventListener("change", () => {
-    document.querySelector("h2").innerHTML = jobChoice.value;
-    document.querySelector(
-      "h3"
-    ).innerHTML = `${cityChoice.value}, ${countryChoice.value}`;
-    document
-      .querySelector("ul.position-right")
-      .classList.toggle(`position-${positionChanger.value}`);
-  });
   console.log("These are the current variables: ", variables); // print on the console
   // here we ask the logical questions to make decisions on how to build the html
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
-
+  variables.name = setDefault(variables.name, "Name");
+  variables.lastName = setDefault(variables.lastName, "Last name");
+  variables.role = setDefault(variables.role, "Role");
+  variables.city = setDefault(variables.city, "City");
+  variables.country = setDefault(variables.lastName, "Country");
+  variables.twitter = setDefault(variables.lastName, "adrims91");
+  variables.github = setDefault(variables.lastName, "Last name");
+  variables.linkedin = setDefault(variables.lastName, "Last name");
+  variables.instagram = setDefault(variables.lastName, "adrims91");
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/school/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <h1>${variables.name} ${variables.lastName}</h1>
+          <h2>${variables.role}</h2>
+          <h3>${variables.city}, ${variables.country}</h3>
+          <ul class="${variables.socialMediaPosition}">
+            <li><a href="https://twitter.com/${variables.twitter}"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${variables.github}"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/school/${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${variables.instagram}"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
