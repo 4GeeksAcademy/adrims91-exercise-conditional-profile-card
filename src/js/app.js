@@ -31,15 +31,15 @@ const render = (variables = {}) => {
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
-  variables.name = setDefault(variables.name, "Name");
-  variables.lastName = setDefault(variables.lastName, "Last name");
-  variables.role = setDefault(variables.role, "Role");
-  variables.city = setDefault(variables.city, "City");
-  variables.country = setDefault(variables.lastName, "Country");
-  variables.twitter = setDefault(variables.lastName, "adrims91");
-  variables.github = setDefault(variables.lastName, "Last name");
-  variables.linkedin = setDefault(variables.lastName, "Last name");
-  variables.instagram = setDefault(variables.lastName, "adrims91");
+  variables.name = setDefault(variables.name, "Cristiano");
+  variables.lastName = setDefault(variables.lastName, "Ronaldo");
+  variables.role = setDefault(variables.role, "Football Player");
+  variables.city = setDefault(variables.city, "Madeira");
+  variables.country = setDefault(variables.country, "Portugal");
+  variables.twitter = setDefault(variables.twitter, "cr7");
+  variables.github = setDefault(variables.github, "cr7");
+  variables.linkedin = setDefault(variables.linkedin, "cr7");
+  variables.instagram = setDefault(variables.instagram, "cr7");
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
